@@ -1,36 +1,37 @@
 "use strict";
 
-var React = require('react');
-var AppBar = require('material-ui/lib/app-bar');
-var FlatButton = require('material-ui/lib/flat-button');
-var LeftNav = require('material-ui/lib/left-nav');
+var React = require("react");
+var AppBar = require("material-ui/lib/app-bar");
+var PlayerList = require("./playerList");
 
 var App = React.createClass({
-    getInitialState: function () {
-        return {
-            menuItems: [
-                {route: 'get-started', text: 'Get Started'},
-                {route: 'customization', text: 'Customization'},
-                {route: 'components', text: 'Components'}
-            ]
-        };
-    },
+    //getInitialState: function () {
+    //    return {
+    //        menuItems: [
+    //            {route: 'get-started', text: 'Get Started'},
+    //            {route: 'customization', text: 'Customization'},
+    //            {route: 'components', text: 'Components'}
+    //        ]
+    //    };
+    //},
 
-    _toggleNav: function () {
-        this.refs.leftNav.toggle();
+    _togglePlayerList: function () {
+        this.refs.playerList._toggleNav();
     },
 
     render: function () {
+        var styles = {
+            textAlign: "center"
+        };
+
         return (
             <div>
                 <AppBar
                     title="Player Profile"
-                    onLeftIconButtonTouchTap={this._toggleNav}/>
+                    style={styles}
+                    onLeftIconButtonTouchTap={this._togglePlayerList}/>
 
-                <LeftNav
-                    ref="leftNav"
-                    docked={false}
-                    menuItems={this.state.menuItems}/>
+                <PlayerList ref="playerList"/>
             </div>
         )
     }

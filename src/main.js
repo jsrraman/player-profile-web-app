@@ -1,8 +1,8 @@
 "use strict";
 
-var React = require('react');
-var ReactDOM = require('react-dom');
-var App = require('./components/App');
+var React = require("react");
+var ReactDOM = require("react-dom");
+var App = require("./components/app");
 
 // Note:
 // In order the tap events to work we need the following work around
