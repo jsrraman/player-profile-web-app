@@ -3,5 +3,5 @@
 var keyMirror = require("key-mirror");
 
 module.exports = keyMirror({
-    INITIALIZE: null,
+    INITIALIZE: null
 });

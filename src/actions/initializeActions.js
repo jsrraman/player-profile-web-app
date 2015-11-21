@@ -6,11 +6,16 @@ var ActionTypes = require("../constants/actionTypes");
 
 var InitialActionTypes = {
     initApp: function() {
-        Dispatcher.dispatch({
-            actionType: ActionTypes.INITIALIZE,
-            initialData: {
+        PlayerApi.getAllPlayerCountries().then(function(response) {
+            //console.log("success->" + response.body);
+            var jsonObject = JSON.parse(response.body);
 
-            }
+            Dispatcher.dispatch({
+                actionType: ActionTypes.INITIALIZE,
+                players: jsonObject.result
+            });
+        }).catch(function(err){
+            console.log("Error->"+ err);
         });
     }
 };

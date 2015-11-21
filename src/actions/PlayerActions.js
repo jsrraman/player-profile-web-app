@@ -2,4 +2,4 @@
 
 var Dispatcher = require("../dispatcher");
 var PlayerApi = require("../api/playerApi");
-var ActionTypes = require()
+//var ActionTypes = require()

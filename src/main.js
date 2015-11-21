@@ -3,6 +3,7 @@
 var React = require("react");
 var ReactDOM = require("react-dom");
 var App = require("./components/app");
+var InitializeActions = require("./actions/initializeActions");
 
 // Note:
 // In order the tap events to work we need the following work around
@@ -14,5 +15,7 @@ var injectTapEventPlugin = require("react-tap-event-plugin");
 //Check this repo:
 //https://github.com/zilverline/react-tap-event-plugin
 injectTapEventPlugin();
+
+InitializeActions.initApp();
 
 ReactDOM.render(<App/>, document.getElementById("App"));
