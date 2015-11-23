@@ -30,12 +30,8 @@ var PlayerStore = assign({}, EventEmitter.prototype, {
         this.emit(CHANGE_EVENT);
     },
 
-    getAllPlayerCountries: function () {
+    getCountries: function () {
         return _players;
-    },
-
-    getAuthorById: function (id) {
-        return _.find(_authors, {id: id});
     }
 });
 

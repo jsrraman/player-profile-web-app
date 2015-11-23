@@ -1,18 +1,17 @@
 "use strict";
 
 var Dispatcher = require("../dispatcher");
-var PlayerApi = require("../api/playerApi");
+var PlayerApi = require("../api/playerProfileApi");
 var ActionTypes = require("../constants/actionTypes");
 
 var InitialActionTypes = {
     initApp: function() {
-        PlayerApi.getAllPlayerCountries().then(function(response) {
-            //console.log("success->" + response.body);
-            var jsonObject = JSON.parse(response.body);
+        PlayerApi.getCountries().then(function(response) {
+            var json = JSON.parse(response.body);
 
             Dispatcher.dispatch({
                 actionType: ActionTypes.INITIALIZE,
-                players: jsonObject.result
+                players: json.result
             });
         }).catch(function(err){
             console.log("Error->"+ err);

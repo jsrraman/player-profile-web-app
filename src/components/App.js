@@ -2,25 +2,15 @@
 
 var React = require("react");
 var AppBar = require("material-ui/lib/app-bar");
-var PlayerList = require("./playerList");
+var CountryList = require("./countryList");
 
 var App = React.createClass({
-    //getInitialState: function () {
-    //    return {
-    //        menuItems: [
-    //            {route: 'get-started', text: 'Get Started'},
-    //            {route: 'customization', text: 'Customization'},
-    //            {route: 'components', text: 'Components'}
-    //        ]
-    //    };
-    //},
-
-    _togglePlayerList: function () {
-        this.refs.playerList._toggleNav();
+    _toggleCountryList: function () {
+        this.refs.countryList._toggleNav();
     },
 
     render: function () {
-        var styles = {
+        var appBarStyle = {
             textAlign: "center"
         };
 
@@ -28,10 +18,10 @@ var App = React.createClass({
             <div>
                 <AppBar
                     title="Player Profile"
-                    style={styles}
-                    onLeftIconButtonTouchTap={this._togglePlayerList}/>
+                    style={appBarStyle}
+                    onLeftIconButtonTouchTap={this._toggleCountryList}/>
 
-                <PlayerList ref="playerList"/>
+                <CountryList ref="countryList"/>
             </div>
         )
     }

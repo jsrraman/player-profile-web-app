@@ -1,15 +1,14 @@
 "use strict";
 
 var Constants = require("../constants/appConstants");
-//var requestPromise = require("request-promise");
 var Promise = require("bluebird");
 var request = Promise.promisifyAll(require("request"));
 
 // Note: Each method returns a promise
-var PlayerApi = {
-    getAllPlayerCountries: function () {
+var PlayerProfileApi = {
+    getCountries: function () {
         //var options = {
-        //    uri: Constants.getPlayersCountriesUrl,
+        //    uri: Constants.getCountriesUrl,
         //    json: true
         //};
 
@@ -21,8 +20,8 @@ var PlayerApi = {
         //        return null;
         //    });
 
-        return request.getAsync(Constants.getPlayersCountriesUrl);
+        return request.getAsync(Constants.getCountriesUrl);
     }
 };
 
-module.exports = PlayerApi;
+module.exports = PlayerProfileApi;
