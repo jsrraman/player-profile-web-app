@@ -1,6 +1,6 @@
 "use strict";
 
-var Constants = {
+let Constants = {
     baseUrl: "http://localhost:3000",
     getCountriesUrl: "http://localhost:3000/players/countries"
 };

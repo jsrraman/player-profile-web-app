@@ -1,14 +1,14 @@
 "use strict";
 
-var Dispatcher = require('../dispatcher');
-var ActionTypes = require('../constants/actionTypes');
-var EventEmitter = require('events').EventEmitter; // For broadcasting a given event
-var assign = require('object-assign');
-var _ = require('lodash');
+let Dispatcher = require('../dispatcher');
+let ActionTypes = require('../constants/actionTypes');
+let EventEmitter = require('events').EventEmitter; // For broadcasting a given event
+let assign = require('object-assign');
+let _ = require('lodash');
 
-var CHANGE_EVENT = 'change';
+let CHANGE_EVENT = 'change';
 
-var _players = [];
+let _players = [];
 
 // The below statement has the following meaning
 // Take an empty object, add the event emitter prototype capability and further
@@ -17,7 +17,7 @@ var _players = [];
 // 2. Remove change listener
 // 3. Emit change
 // These three methods are common to any store
-var PlayerStore = assign({}, EventEmitter.prototype, {
+let PlayerStore = assign({}, EventEmitter.prototype, {
     addChangeListener: function (callback) {
         this.on(CHANGE_EVENT, callback);
     },

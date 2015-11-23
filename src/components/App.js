@@ -1,16 +1,16 @@
 "use strict";
 
-var React = require("react");
-var AppBar = require("material-ui/lib/app-bar");
-var CountryList = require("./countryList");
+let React = require("react");
+let AppBar = require("material-ui/lib/app-bar");
+let CountryList = require("./countryList");
 
-var App = React.createClass({
+let App = React.createClass({
     _toggleCountryList: function () {
         this.refs.countryList._toggleNav();
     },
 
     render: function () {
-        var appBarStyle = {
+        let appBarStyle = {
             textAlign: "center"
         };
 

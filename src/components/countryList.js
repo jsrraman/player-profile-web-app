@@ -1,12 +1,12 @@
 "use strict";
 
-var React = require("react");
-var LeftNav = require("material-ui/lib/left-nav");
-var List = require('material-ui/lib/lists/list');
-var ListItem = require('material-ui/lib/lists/list-item');
-var PlayerStore = require("../stores/playerStore");
+let React = require("react");
+let LeftNav = require("material-ui/lib/left-nav");
+let List = require('material-ui/lib/lists/list');
+let ListItem = require('material-ui/lib/lists/list-item');
+let PlayerStore = require("../stores/playerStore");
 
-var CountryList = React.createClass({
+let CountryList = React.createClass({
     getInitialState: function () {
         return {
             countryList: []
@@ -22,15 +22,14 @@ var CountryList = React.createClass({
     },
 
     _onChange: function () {
-        var players = PlayerStore.getCountries();
-        var self = this;
+        let players = PlayerStore.getCountries();
 
-        players.forEach(function (element, index, array) {
-            var imgStyle = {
+        players.forEach((element, index, array) => {
+            let imgStyle = {
                 verticalAlign: "middle"
             };
 
-            self.state.countryList.push(
+            this.state.countryList.push(
                 <ListItem key={index}>
                     <img src={element.thumbnailUrl} height="24" width="24" style={imgStyle}/>
                     &nbsp;{element.name}
@@ -41,12 +40,13 @@ var CountryList = React.createClass({
         this.setState({countryList: this.state.countryList});
     },
 
+
     _toggleNav: function () {
         this.refs.leftNav.toggle();
     },
 
     render: function () {
-        var listStyle = {
+        let listStyle = {
             maxHeight: 800,
             overflowY: "auto"
         };

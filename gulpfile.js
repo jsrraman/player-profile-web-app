@@ -1,17 +1,17 @@
 "use strict";
 
-var gulp = require('gulp');
-var connect = require('gulp-connect'); // Runs a local web server
-var open = require('gulp-open'); // Opens a url in the web browser
-var browserify = require('browserify'); // Bundles JS
-var reactify = require('reactify'); // Transforms React JSX
-//var babelify = require('babelify'); // Convert ES5 to ES6
-var source = require('vinyl-source-stream'); // Use conventional text streams with Gulp
-var concat = require('gulp-concat'); // Concatenates files
-var lint = require('gulp-eslint'); // Lints the JS, JSX files
-var sass = require('gulp-sass'); // Converts sass to css
+let gulp = require('gulp');
+let connect = require('gulp-connect'); // Runs a local web server
+let open = require('gulp-open'); // Opens a url in the web browser
+let browserify = require('browserify'); // Bundles JS
+let reactify = require('reactify'); // Transforms React JSX
+//let babelify = require('babelify'); // Convert ES5 to ES6
+let source = require('vinyl-source-stream'); // Use conventional text streams with Gulp
+let concat = require('gulp-concat'); // Concatenates files
+let lint = require('gulp-eslint'); // Lints the JS, JSX files
+let sass = require('gulp-sass'); // Converts sass to css
 
-var config = {
+let config = {
     devBaseUrl: 'http://localhost',
     port: 4000,
     paths: {
