@@ -46,10 +46,17 @@ var CountryList = React.createClass({
     },
 
     render: function () {
+        var listStyle = {
+            maxHeight: 800,
+            overflowY: "auto"
+        };
+
         return (
             <div>
                 <LeftNav ref="leftNav" docked={false}>
-                    {this.state.countryList}
+                    <List style={listStyle}>
+                        {this.state.countryList}
+                    </List>
                 </LeftNav>
             </div>
         )
