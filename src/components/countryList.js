@@ -1,10 +1,12 @@
 "use strict";
 
-let React = require("react");
-let LeftNav = require("material-ui/lib/left-nav");
-let List = require('material-ui/lib/lists/list');
-let ListItem = require('material-ui/lib/lists/list-item');
-let PlayerProfileStore = require("../stores/playerProfileStore");
+const React = require("react");
+const LeftNav = require("material-ui/lib/left-nav");
+const List = require('material-ui/lib/lists/list');
+const ListItem = require('material-ui/lib/lists/list-item');
+const PlayerProfileStore = require("../stores/playerProfileStore");
+import * as Events from "../constants/appEvents";
+import PlayerProfileApiActions from "../actions/playerProfileApiActions";
 
 let CountryList = React.createClass({
     getInitialState: function () {
@@ -14,14 +16,15 @@ let CountryList = React.createClass({
     },
 
     componentWillMount: function () {
-        PlayerProfileStore.addChangeListener(this._onChange)
+        PlayerProfileStore.addEventListener(Events.GET_COUNTRIES_API_COMPLETED_EVENT,
+            this._onGetCountriesApiCompletedEvent)
     },
 
     componentWillUnmount: function () {
-        PlayerProfileStore.removeChangeListener(this._onChange)
+        PlayerProfileStore.removeEventListener(this._onGetCountriesApiCompletedEvent)
     },
 
-    _onChange: function () {
+    _onGetCountriesApiCompletedEvent: function () {
         let countries = PlayerProfileStore.getCountries();
 
         countries.forEach((element, index, array) => {
@@ -44,8 +47,10 @@ let CountryList = React.createClass({
         this.refs.leftNav.toggle();
     },
 
-    _handleListItemClick: function(countryId) {
-        //console.log("Country ID->" + countryId);
+    _handleListItemClick: function (countryId) {
+        PlayerProfileApiActions.getPlayersForCountry(countryId);
+        this._toggleNav();
+        this.props.showProgressDialog("Getting players' list ...");
     },
 
     render: function () {

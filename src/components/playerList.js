@@ -4,6 +4,7 @@ let React = require("react");
 let List = require('material-ui/lib/lists/list');
 let ListItem = require('material-ui/lib/lists/list-item');
 let PlayerProfileStore = require("../stores/playerProfileStore");
+import * as Events from "../constants/appEvents";
 
 let PlayerList = React.createClass({
     getInitialState: function () {
@@ -13,15 +14,20 @@ let PlayerList = React.createClass({
     },
 
     componentWillMount: function () {
-        PlayerProfileStore.addChangeListener(this._onChange)
+        PlayerProfileStore.addEventListener(Events.GET_PLAYERS_FOR_COUNTRY_API_COMPLETED_EVENT,
+            this._onGetPlayersForCountryApiCompletedEvent)
     },
 
     componentWillUnmount: function () {
-        PlayerProfileStore.removeChangeListener(this._onChange)
+        PlayerProfileStore.removeEventListener(this._onGetPlayersForCountryApiCompletedEvent)
     },
 
-    _onChange: function () {
-        let players = PlayerProfileStore.getCountries();
+    _onGetPlayersForCountryApiCompletedEvent: function () {
+        this.props.dismissProgressDialog();
+
+        this.state.players.length = 0;
+
+        let players = PlayerProfileStore.getPlayers();
 
         players.forEach((element, index, array) => {
             let imgStyle = {
@@ -29,8 +35,8 @@ let PlayerList = React.createClass({
             };
 
             this.state.players.push(
-                <ListItem key={index}>
-                    <img src={element.thumbnailUrl} height="24" width="24" style={imgStyle}/>
+                <ListItem key={element.playerId}>
+                    <img src={element.playerUrl} height="24" width="24" style={imgStyle}/>
                     &nbsp;{element.name}
                 </ListItem>
             )

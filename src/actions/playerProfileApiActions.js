@@ -4,7 +4,7 @@ let Dispatcher = require("../dispatcher");
 let PlayerProfileApi = require("../api/playerProfileApi");
 let ActionTypes = require("../constants/actionTypes");
 
-let PlayerProfileActions = {
+let PlayerProfileApiActions = {
     getCountries: function () {
         PlayerProfileApi.getCountries().then(function (response) {
             let json = JSON.parse(response.body);
@@ -32,5 +32,4 @@ let PlayerProfileActions = {
     }
 };
 
-
-module.exports = PlayerProfileActions;
+export default PlayerProfileApiActions;
