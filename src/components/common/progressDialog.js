@@ -7,30 +7,41 @@ import CircularProgress from "material-ui/lib/circular-progress";
 const ProgressDialog = React.createClass({
     getInitialState: function () {
         return {
-            title: "Loading ...",
+            message: "Loading ...",
             showProgressDialog: false
         };
     },
 
-    _show: function(title) {
-      this.setState({
-          title: title,
-          showProgressDialog: true});
+    _show: function (message) {
+        this.setState({
+            message: message,
+            showProgressDialog: true
+        });
     },
 
-    _dismiss: function() {
+    _dismiss: function () {
         this.setState({showProgressDialog: false})
     },
 
     render: function () {
+        let verticalAlignStyle = {
+            verticalAlign: "middle"
+        };
+
+        let circularProgressStyle = {
+            verticalAlign: "middle",
+            marginRight: "2em"
+        };
+
         return (
-            <div>
-                <Dialog
-                    title={this.state.title}
-                    open={this.state.showProgressDialog}>
-                    <CircularProgress mode="indeterminate"/>
-                </Dialog>
-            </div>
+            <Dialog
+                modal={true}
+                open={this.state.showProgressDialog}>
+                <div style={verticalAlignStyle}>
+                    <CircularProgress mode="indeterminate" style={circularProgressStyle}/>
+                    {this.state.message}
+                </div>
+            </Dialog>
         )
     }
 });

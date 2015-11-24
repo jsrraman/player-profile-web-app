@@ -11,8 +11,8 @@ let App = React.createClass({
         this.refs.countryList._toggleNav();
     },
 
-    _showProgressDialog: function(title) {
-        this.refs.progressDialog._show(title);
+    _showProgressDialog: function(message) {
+        this.refs.progressDialog._show(message);
     },
 
     _dismissProgressDialog: function() {
