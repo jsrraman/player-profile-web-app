@@ -36,11 +36,10 @@ const ProgressDialog = React.createClass({
         return (
             <Dialog
                 modal={true}
-                open={this.state.showProgressDialog}>
-                <div style={verticalAlignStyle}>
-                    <CircularProgress mode="indeterminate" style={circularProgressStyle}/>
-                    {this.state.message}
-                </div>
+                open={this.state.showProgressDialog}
+                bodyStyle={verticalAlignStyle}>
+                <CircularProgress mode="indeterminate" style={circularProgressStyle}/>
+                {this.state.message}
             </Dialog>
         )
     }
