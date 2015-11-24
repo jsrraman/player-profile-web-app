@@ -5,7 +5,7 @@ let connect = require('gulp-connect'); // Runs a local web server
 let open = require('gulp-open'); // Opens a url in the web browser
 let browserify = require('browserify'); // Bundles JS
 let reactify = require('reactify'); // Transforms React JSX
-//let babelify = require('babelify'); // Convert ES5 to ES6
+let babelify = require('babelify'); // Used to convert ES5 to ES6, JSX to JS
 let source = require('vinyl-source-stream'); // Use conventional text streams with Gulp
 let concat = require('gulp-concat'); // Concatenates files
 let lint = require('gulp-eslint'); // Lints the JS, JSX files
@@ -56,8 +56,8 @@ gulp.task('html', function () {
 
 gulp.task('js', function () {
     browserify(config.paths.mainJs)
-        .transform(reactify)
-        //.transform(babelify, {presets: ["es2015", "react"]})
+        //.transform(reactify, {es6: true})
+        .transform(babelify, {presets: ["es2015", "react"]})
         .bundle()
         .on('error', console.error.bind(console))
         .pipe(source('bundle.js'))
@@ -85,7 +85,7 @@ gulp.task('images', function () {
 
 gulp.task('lint', function () {
     return gulp.src(config.paths.js)
-        .pipe(lint({config: 'eslint.config.json'}))
+        .pipe(lint({config: '.eslintrc'}))
         .pipe(lint.format());
 });
 

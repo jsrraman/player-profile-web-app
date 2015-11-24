@@ -8,7 +8,7 @@ let _ = require('lodash');
 
 let CHANGE_EVENT = 'change';
 
-let _players = [];
+let _countries = [], _players = [];
 
 // The below statement has the following meaning
 // Take an empty object, add the event emitter prototype capability and further
@@ -17,7 +17,7 @@ let _players = [];
 // 2. Remove change listener
 // 3. Emit change
 // These three methods are common to any store
-let PlayerStore = assign({}, EventEmitter.prototype, {
+let PlayerProfileStore = assign({}, EventEmitter.prototype, {
     addChangeListener: function (callback) {
         this.on(CHANGE_EVENT, callback);
     },
@@ -31,25 +31,33 @@ let PlayerStore = assign({}, EventEmitter.prototype, {
     },
 
     getCountries: function () {
-        return _players;
+        return _countries;
     }
 });
 
 // Private section which is not exposed to the public
 Dispatcher.register(function (action) {
     switch (action.actionType) {
-        case ActionTypes.INITIALIZE:
+        case ActionTypes.GET_COUNTRIES:
+        {
+            _countries = action.countries;
+            PlayerProfileStore.emitChange();
+            break;
+        }
+
+        case ActionTypes.GET_PLAYERS_FOR_COUNTRY:
         {
             _players = action.players;
-            PlayerStore.emitChange();
+            PlayerProfileStore.emitChange();
             break;
         }
 
         default:
         {
             console.log("None of the actionType matched !!!");
+            break;
         }
     }
 });
 
-module.exports = PlayerStore;
+module.exports = PlayerProfileStore;

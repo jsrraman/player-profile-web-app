@@ -1,15 +1,14 @@
 "use strict";
 
 let React = require("react");
-let LeftNav = require("material-ui/lib/left-nav");
 let List = require('material-ui/lib/lists/list');
 let ListItem = require('material-ui/lib/lists/list-item');
 let PlayerProfileStore = require("../stores/playerProfileStore");
 
-let CountryList = React.createClass({
+let PlayerList = React.createClass({
     getInitialState: function () {
         return {
-            countries: []
+            players: []
         };
     },
 
@@ -22,31 +21,24 @@ let CountryList = React.createClass({
     },
 
     _onChange: function () {
-        let countries = PlayerProfileStore.getCountries();
+        let players = PlayerProfileStore.getCountries();
 
-        countries.forEach((element, index, array) => {
+        players.forEach((element, index, array) => {
             let imgStyle = {
                 verticalAlign: "middle"
             };
 
-            this.state.countries.push(
-                <ListItem key={element.countryId} onTouchTap={this._handleListItemClick.bind(this, element.countryId)}>
+            this.state.players.push(
+                <ListItem key={index}>
                     <img src={element.thumbnailUrl} height="24" width="24" style={imgStyle}/>
                     &nbsp;{element.name}
                 </ListItem>
             )
         });
 
-        this.setState({countries: this.state.countries});
+        this.setState({players: this.state.players});
     },
 
-    _toggleNav: function () {
-        this.refs.leftNav.toggle();
-    },
-
-    _handleListItemClick: function(countryId) {
-        //console.log("Country ID->" + countryId);
-    },
 
     render: function () {
         let listStyle = {
@@ -56,14 +48,12 @@ let CountryList = React.createClass({
 
         return (
             <div>
-                <LeftNav ref="leftNav" docked={false}>
-                    <List style={listStyle}>
-                        {this.state.countries}
-                    </List>
-                </LeftNav>
+                <List style={listStyle}>
+                    {this.state.players}
+                </List>
             </div>
         )
     }
 });
 
-module.exports = CountryList;
+module.exports = PlayerList;

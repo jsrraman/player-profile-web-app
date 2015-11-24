@@ -3,6 +3,7 @@
 let React = require("react");
 let AppBar = require("material-ui/lib/app-bar");
 let CountryList = require("./countryList");
+let PlayerList = require("./playerList");
 
 let App = React.createClass({
     _toggleCountryList: function () {
@@ -22,6 +23,7 @@ let App = React.createClass({
                     onLeftIconButtonTouchTap={this._toggleCountryList}/>
 
                 <CountryList ref="countryList"/>
+                <PlayerList />
             </div>
         )
     }

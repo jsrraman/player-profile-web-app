@@ -3,7 +3,7 @@
 let React = require("react");
 let ReactDOM = require("react-dom");
 let App = require("./components/app");
-let InitializeActions = require("./actions/initializeActions");
+let PlayerProfileActions = require("./actions/playerProfileActions");
 
 // Note:
 // In order the tap events to work we need the following work around
@@ -16,6 +16,6 @@ let injectTapEventPlugin = require("react-tap-event-plugin");
 //https://github.com/zilverline/react-tap-event-plugin
 injectTapEventPlugin();
 
-InitializeActions.initApp();
+PlayerProfileActions.getCountries();
 
 ReactDOM.render(<App/>, document.getElementById("App"));
